@@ -44,20 +44,18 @@ clinical$normal.cells.percent <- as.numeric(raw$patient.samples.sample.portions.
 clinical$stromal.cells.percent <- as.numeric(raw$patient.samples.sample.portions.portion.slides.slide.percent_stromal_cells)
 clinical$tumor.cells.percent <- as.numeric(raw$patient.samples.sample.portions.portion.slides.slide.percent_tumor_cells)
 
-clinical <- clinical[clinical$female,]
-clinical$female <- NULL
 
-clinical$estrogen.receptor.status <- factor(
-    clinical$estrogen.receptor.status,
-    levels=c("negative","positive"))
-
-clinical$progesterone.receptor.status <- factor(
-    clinical$progesterone.receptor.status,
-    levels=c("negative","positive"))
-
-clinical$her2.status <- factor(
-    clinical$her2.status,
-    levels=c("negative","positive"))
+#clinical$estrogen.receptor.status <- factor(
+#    clinical$estrogen.receptor.status,
+#    levels=c("negative","positive"))
+#
+#clinical$progesterone.receptor.status <- factor(
+#    clinical$progesterone.receptor.status,
+#    levels=c("negative","positive"))
+#
+#clinical$her2.status <- factor(
+#    clinical$her2.status,
+#    levels=c("negative","positive"))
 
 clinical$stage[clinical$stage == "stage x"] <- NA
 
@@ -79,7 +77,7 @@ clinical$tnm.n.category[grepl("n3", clinical$tnm.n.category)] <- "n3"
 
 
 clinical.pan <- read.table(pan.cancer.filename,header=T,sep="\t",stringsAsFactors=F)
-clinical.pan <- clinical.pan[which(clinical.pan$type == "BRCA"),]
+clinical.pan <- clinical.pan[which(clinical.pan$type == "HNSC"),]
 clinical.pan$participant <- sub("[^-]+-[^-]+-", "", clinical.pan$bcr_patient_barcode)
 clinical.pan <- clinical.pan[match(clinical$participant, clinical.pan$participant),]
 clinical$pfi <- clinical.pan$PFI
