@@ -61,8 +61,8 @@ bash split-data.sh
 
 Prepare annotations of the data in order to link between
 the different types. Creates three annotation files:
-- `TRAINING_DIR/methylation-annotation.txt` Links CpG sites to genes.
-- `TRAINING_DIR/protein-annotation.txt` Links proteins to genes.
+- `METHYLATION_DIR/methylation-annotation.txt` Links CpG sites to genes.
+- `PROTEIN_DIR/protein-annotation.txt` Links proteins to genes.
 
 ```
 bash annotate-data.sh
