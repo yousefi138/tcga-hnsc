@@ -28,40 +28,6 @@ extract_file () {
 }
 
 ########################
-### mrna
-#extract_file \
-# $FILE_DIR/*mRNAseq_Preprocess.Level_3.*.tar.gz \
-# RSEM_Z_Score.txt \
-# $FULL_DIR/mrna.txt
-#
-#if [ ! -f  $FULL_DIR/mrna-clean.txt ]; then
-#    echo "Cleaning mrna.txt ..."
-#    perl -pe 's/\|[0-9]+//'  $FULL_DIR/mrna.txt \
-#	| grep -ve "?" >  $FULL_DIR/mrna-clean.txt
-#    
-#fi
-#
-########################
-### mirna 
-#extract_file \
-# $FILE_DIR/*HNSC.*illuminaga_*_miR_gene_expression__data.Level_3.*.tar.gz \
-# miR_gene_expression__data.data.txt \
-# $FULL_DIR/mirna1.txt
-#
-#extract_file \
-# $FILE_DIR/*HNSC.*illuminahiseq_*_miR_gene_expression__data.Level_3.*.tar.gz \
-# miR_gene_expression__data.data.txt \
-# $FULL_DIR/mirna2.txt
-#
-#if [ ! -f "$FULL_DIR/mirna.txt" ]; then
-#    echo "Cleaning mirna data"
-#    Rscript clean-mirna.r \
-#	$FULL_DIR/mirna1.txt \
-#	$FULL_DIR/mirna2.txt \
-#	$FULL_DIR/mirna.txt
-#fi
-#
-########################
 ## protein
 extract_file \
  $FILE_DIR/*_protein_normalization__data.Level_3.*.tar.gz \
@@ -87,29 +53,6 @@ if [ ! -f $FULL_DIR/methylation-clean.txt ]; then
 	| sed 2d \
 	> $FULL_DIR/methylation-clean.txt
 fi
-
-########################
-### cnv
-#extract_file \
-# $FILE_DIR/*_HNSC.Merge_*_cnv_hg19__seg.Level_3.*.tar.gz \
-# seg.txt \
-# $FULL_DIR/cnv.txt
-#
-########################
-### mutations
-#if [ -d "$FULL_DIR/mutations" ]; then
-#    echo "directory mutations/ exists, skipping"
-#else
-#    gunzip -c $FILE_DIR/*_HNSC.Mutation_Packager_Oncotated_Calls.Level_3.*.tar.gz | tar xv
-#    mv gdac.broad*  $FULL_DIR/mutations
-#fi
-#
-#if [ -f "$FULL_DIR/mutations.txt" ]; then
-#    echo "file mutations.txt exists, skipping"
-#else
-#    Rscript extract-mutations.r $FULL_DIR/mutations $FULL_DIR/mutations.txt
-#fi
-#    
 
 #######################
 ## clinical
