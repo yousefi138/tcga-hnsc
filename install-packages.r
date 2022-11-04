@@ -1,6 +1,9 @@
 ## package names
 packages <- c("data.table", "readxl", "knitr", "IlluminaHumanMethylation450kanno.ilmn12.hg19")
 
+installed <- sapply(packages, require, character.only=T)
+installed
+
 ## install cran packages
 install.packages(head(packages, -1))
 
