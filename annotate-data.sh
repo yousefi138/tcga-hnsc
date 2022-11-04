@@ -2,5 +2,5 @@
 
 source variables.txt
 
-Rscript annotate-data.r $TRAINING_DIR
+Rscript annotate-data.r $PROTEIN_DIR
 
