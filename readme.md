@@ -10,8 +10,14 @@ Instead, I compiled a list of files to download from the GDAC website:
 http://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/HNSC/20160128
 See `files.csv` in this directory.
 
-Data files will be downloaded to the `FILES_DIR` directory
-(see [variables.txt](variables.txt)). 
+See [variables.txt](variables.txt)) for full list of directories of where
+data are downloaded, cleaned, and stored. 
+
+All data generated are within the `PROJECT_DIR` which I've set to be `hnsc-project`
+but which can be freely changed to preference. 
+
+Data files will be downloaded to the `FILES_DIR` directory by using the 
+below command:
 
 ```
 bash download-data.sh files.csv
