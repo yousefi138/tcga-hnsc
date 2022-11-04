@@ -52,8 +52,9 @@ using the followin script.
 bash extract-data.sh
 ```
 
-This dataset is then split into training and testing subsets
-in the `TRAINING_DIR` and `TESTING_DIR` directories, respectively.
+This dataset is then split into protein and methylation subsets
+in the `PROTEIN_DIR` and `METHYLATION_DIR` directories, respectively.
+
 ```
 bash split-data.sh
 ```
@@ -62,8 +63,6 @@ Prepare annotations of the data in order to link between
 the different types. Creates three annotation files:
 - `TRAINING_DIR/methylation-annotation.txt` Links CpG sites to genes.
 - `TRAINING_DIR/protein-annotation.txt` Links proteins to genes.
-- `TRAINING_DIR/mirna-targets.txt` Links microRNA genes to protein-coding target genes.
-- `TRAINING_DIR/gene-annotation.txt` Provides information about the locations of genes in the genome.
 
 ```
 bash annotate-data.sh
@@ -76,12 +75,4 @@ tests it in the testing dataset.
 bash run-test.sh
 ```
 
-## Methods
-
-We used the z-scaled RSEM estimates of mRNA expression.
-
-We used the log2 RPM estimates of miRNA expression.
-
-The mutation data was analysed as a matrix of mutation
-counts for each gene and each samples.
 
