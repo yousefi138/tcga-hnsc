@@ -8,7 +8,7 @@ output.dir <- args[2]
 dir.create(output.dir, recursive=T)
 
 url <- "https://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/HNSC/20160128"
-files <- read.table(filename, sep=" ", header=T, stringsAsFactors=F)
+files <- read.csv(filename, header=T, stringsAsFactors=F)
 
 for (filename in files$filename) {
     if (!file.exists(file.path(output.dir, filename)))

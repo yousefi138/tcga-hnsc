@@ -8,13 +8,13 @@ Considered using the TCGAbiolinks R package to download TCGA data
 but ran into installation problems.
 Instead, I compiled a list of files to download from the GDAC website:
 http://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/HNSC/20160128
-See `files.txt` in this directory.
+See `files.csv` in this directory.
 
 Data files will be downloaded to the `FILES_DIR` directory
 (see [variables.txt](variables.txt)). 
 
 ```
-bash download-data.sh files.txt
+bash download-data.sh files.csv
 ```
 
 Clinical outcome data has been cleaned up as part of the
