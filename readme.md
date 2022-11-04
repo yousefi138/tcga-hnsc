@@ -1,4 +1,4 @@
-# Using genomic data to predict Head and Neck cancer outcome
+# Using genomic data to predict Head and Neck cancer outcomes
 
 Background and instructions presentation: [pdf](slides.pdf) [pptx](slides.pptx)
 
