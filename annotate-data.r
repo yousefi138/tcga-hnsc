@@ -2,14 +2,15 @@
 
 args <- commandArgs(trailingOnly=TRUE)
 
-data.dir <- args[1]
+protein.dir <- args[1]
+methylation.dir <- args[2]
 
 cat("annotate-data.r", paste(args,collapse=" "), "\n")
 
 ############################
 ## load all data types other than methylation
 source("my-read-table.r")
-protein <- my.read.table(file.path(data.dir, "protein.txt"))
+protein <- my.read.table(file.path(protein.dir, "protein.txt"))
 
 
 ############################
@@ -47,12 +48,12 @@ regions <- expand.data.frame(meth.annotation, "region")$region
 meth.annotation <- expand.data.frame(meth.annotation, "gene")
 meth.annotation$region <- regions
 
-write.table(meth.annotation, file=file.path(data.dir, "methylation-annotation.txt"), row.names=F, sep="\t")
+write.table(meth.annotation, file=file.path(methylation.dir, "methylation-annotation.txt"), row.names=F, sep="\t")
 
 
 ##############
 ## protein identifiers to gene symbols
 protein.annotation <- read.table("protein-annotation.txt",header=T,sep="\t")
 
-write.table(protein.annotation,file=file.path(data.dir, "protein-annotation.txt"), row.names=F, sep="\t")
+write.table(protein.annotation,file=file.path(protein.dir, "protein-annotation.txt"), row.names=F, sep="\t")
 
