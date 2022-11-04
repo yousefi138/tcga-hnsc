@@ -82,5 +82,7 @@ clinical.pan$participant <- sub("[^-]+-[^-]+-", "", clinical.pan$bcr_patient_bar
 clinical.pan <- clinical.pan[match(clinical$participant, clinical.pan$participant),]
 clinical$pfi <- clinical.pan$PFI
 clinical$pfi.time <- clinical.pan$PFI.time
+clinical$dfi<- clinical.pan$DFI
+clinical$dfi.time <- clinical.pan$DFI.time
 
 write.table(clinical, file=output.filename, row.names=F, col.names=T, sep="\t")
