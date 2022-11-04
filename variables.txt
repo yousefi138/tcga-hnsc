@@ -2,8 +2,8 @@ PROJECT_DIR=hnsc-project
 DATA_DIR=$PROJECT_DIR/data
 FILE_DIR=$DATA_DIR/tcga-files
 FULL_DIR=$DATA_DIR/full-dataset
-TRAINING_DIR=$DATA_DIR/training-dataset
-TESTING_DIR=$DATA_DIR/testing-dataset
+PROTEIN_DIR=$DATA_DIR/protein-dataset
+METHYLATION_DIR=$DATA_DIR/methylation-dataset
 
 PAN_CANCER_URL=https://api.gdc.cancer.gov/data/1b5f413e-a8d1-4d10-92eb-7c4ae739ed81
 PAN_CANCER_DIR=$DATA_DIR/pan-cancer-files
