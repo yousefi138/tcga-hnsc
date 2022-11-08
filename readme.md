@@ -84,11 +84,5 @@ the different types. Creates three annotation files:
 bash annotate-data.sh
 ```
 
-The following script loads the training dataset,
-constructs a very simple predictor and then
-tests it in the testing dataset. 
-```
-bash run-test.sh
-```
 
 
