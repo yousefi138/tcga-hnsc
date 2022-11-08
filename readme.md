@@ -2,6 +2,22 @@
 
 Background and instructions presentation: [pdf](slides.pdf) [pptx](slides.pptx)
 
+## System requirements
+
+To successfully run the pipeline below and download the TCGA data
+you'll need to have access to a bash/unix command line with the R statistical
+programming language installed. 
+
+No R programming should be required, as all tasks are coordinate by
+bash shell scripts.
+
+However, a few R packages must be installed prior to implementing the 
+pipeline. To install these, run the below command at the command line:
+
+```
+bash install-packages.sh
+```
+
 ## Downloading and preparing the dataset
 
 Considered using the TCGAbiolinks R package to download TCGA data
