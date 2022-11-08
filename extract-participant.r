@@ -19,3 +19,8 @@
 
 extract.participant <- function(id) 
     sub("TCGA-[^-]+-([^-]+)-.*", "\\1", id)
+
+
+extract.tissue <- function(id) {
+    sub("TCGA-[^-]+-[^-]+-([0-9]+)[^-]+-.*", "\\1", id)
+}

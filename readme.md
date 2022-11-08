@@ -20,6 +20,9 @@ bash install-packages.sh
 
 ## Downloading and preparing the dataset
 
+Available TCGA data collection on HNSC is well summarized here:
+https://gdac.broadinstitute.org/runs/stddata__2016_01_28/samples_report/HNSC.html
+
 Considered using the TCGAbiolinks R package to download TCGA data
 but ran into installation problems.
 Instead, I compiled a list of files to download from the GDAC website:
@@ -62,7 +65,7 @@ bash download-pan-cancer-clinical.sh
 
 The dataset will be generated
 from the downloaded files to the `FULL_DIR` directory
-using the followin script.
+using the following script.
 
 ```
 bash extract-data.sh
