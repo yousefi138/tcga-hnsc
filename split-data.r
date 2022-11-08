@@ -33,36 +33,44 @@ datasets <- lapply(filenames, my.read.table)
 
 bycol <- setdiff(names(datasets), c("clinical"))
 
-## extract participant names from sample ids for each dataset
-for (name in bycol) {
-    samples <- colnames(datasets[[name]])
-    colnames(datasets[[name]]) <- extract.participant(samples)
-}
+## extract participant tissue information 
+tissues <- data.frame(
+                participant = extract.participant(colnames(datasets$methylation)),
+                tissue = extract.tissue(colnames(datasets$methylation)),
+                participant.tissue = paste(extract.participant(colnames(datasets$methylation)), 
+                                        extract.tissue(colnames(datasets$methylation)), sep = "-")
+    )
+tissues <- subset(tissues, tissue!= "06")
+
+## extract participant and tissue names from sample ids for each dataset
+
+#protein
+samples <- colnames(datasets[["protein"]])
+colnames(datasets[["protein"]]) <- extract.participant(samples)
+
+#methylation
+samples <- colnames(datasets[["methylation"]])
+colnames(datasets[["methylation"]]) <- paste(extract.participant(samples), 
+                                        extract.tissue(samples), sep = "-")
+
 datasets$clinical$participant <- extract.participant(datasets$clinical$participant)
 
-        
-## restrict the datasets to a set of participants
-restrict.datasets <- function(datasets, participants) {
-    c(list(
-        clinical=datasets$clinical[datasets$clinical$participant %in% participants,]),
-      sapply(
-          datasets[which(names(datasets) %in% bycol)],
-          function(dat) {
-              idx <- c(1,which(colnames(dat) %in% participants))
-              dat[,idx]
-          }, simplify=F))
-}
 
-## restrict to those who have clinical data
-datasets <- restrict.datasets(datasets, datasets$clinical$participant)
+# protein 
+idx <- c(1,which(colnames(datasets$protein) %in% datasets$clinical$participant))
+protein.dataset <- list(
+                    clinical=datasets$clinical[datasets$clinical$participant %in% colnames(datasets$protein),],
+                    protein = datasets$protein[,idx])
 
-## create protein and methylation dataset subsets
 
-## protein
-protein.dataset <- restrict.datasets(datasets, colnames(datasets$protein))[c("clinical", "protein")]
+# methylation
+datasets$clinical <- merge(datasets$clinical, tissues, by.x = "participant")
+datasets$clinical$tumor.or.normal <- ifelse(as.numeric(datasets$clinical$tissue) < 9, "tumor", "normal")
 
-## methylation
-methylation.dataset <- restrict.datasets(datasets, colnames(datasets$methylation))[c("clinical", "methylation")]
+idx <- c(1,which(colnames(datasets$methylation) %in% datasets$clinical$participant.tissue))
+methylation.dataset <- list(
+                    clinical=datasets$clinical[datasets$clinical$participant.tissue %in% colnames(datasets$methylation),],
+                    methylation = datasets$methylation[,idx])
 
 
 

@@ -74,6 +74,12 @@ bash extract-data.sh
 This dataset is then split into protein and methylation subsets
 in the `PROTEIN_DIR` and `METHYLATION_DIR` directories, respectively.
 
+The methylation dataset has observations performed on both tumor and 
+adjacent normal tissues. Tumors are coded with a `tissue` value
+less 10, while normal tissues are between 10 and 19. 
+The clinical variable `tumor.or.normal` also makes this clear.
+For methylation data, this is another outcome to predict. 
+
 ```
 bash split-data.sh
 ```
