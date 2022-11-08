@@ -8,11 +8,11 @@ To successfully run the pipeline below and download the TCGA data
 you'll need to have access to a bash/unix command line with the R statistical
 programming language installed. 
 
-No R programming should be required, as all tasks are coordinate by
+No R programming should be required, as all tasks are coordinated by
 bash shell scripts.
 
 However, a few R packages must be installed prior to implementing the 
-pipeline. To install these, run the below command at the command line:
+pipeline. To install these, run the below command:
 
 ```
 bash install-packages.sh
