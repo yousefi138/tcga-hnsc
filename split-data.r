@@ -11,9 +11,6 @@ names(filenames) <- c(
 protein.dir <- args[length(args)-1]
 methylation.dir <- args[length(args)]
 
-dir.create(protein.dir, recursive=T)
-dir.create(c, recursive=T)
-
 cat("split-data.r", paste(args,collapse=" "), "\n")
 
 source("extract-participant.r")
