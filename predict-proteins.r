@@ -1,8 +1,6 @@
-args <- c("hnsc-project/data/episcores-files/Predictors_Shiny_by_Groups.csv",
-			"hnsc-project/data/methylation-dataset")
+#args <- c("hnsc-project/data/methylation-dataset")
 
-episcore.weights.filename <- args[1]
-methylation.dir <- args[2]
+methylation.dir <- args[1]
 methylation.file <- file.path(methylation.dir, "methylation.txt")
 
 ## Start to Process Files 
@@ -24,6 +22,9 @@ data <- my.read.table(methylation.file)
 	rownames(data) <- data[,index[1]]
 	data <- as.matrix(data[, -index])
 
+    ## drop rows that are completely missing
+    index.na.row <- apply(data, 1, function(i) all(!is.na(i)))
+    data <- data[index.na.row, ]
 
 ## check number of rows missing per sample
 miss <- apply(data, 2, function(i) table(is.na(i)), simplify=F)
@@ -44,17 +45,26 @@ models <- meffonym.models(full=T) %>%
 proteins <- models %>% pull(name)
 
 
-episcores <- sapply(
+predicted.proteins <- t(sapply(
         proteins,
         function(model) {
             cat(date(), model, " ")
             ret <- meffonym.score(data, model)
             cat(" used ", length(ret$sites), "/", length(ret$vars), "sites\n")
             ret$score
-        })
+        }))
 
-## issue arises when some cpgs are missing for all samples... can we just set these to zero?
-# ue Dec  6 21:09:18 2022 CCL18   used  119 / 120 sites
-# ue Dec  6 21:09:18 2022 CCL21   used  98 / 99 sites
-# ue Dec  6 21:09:18 2022 CCL22  Error in impute.mean(x, 1, na.rm = T) : all(!is.na(x)) is not TRUE
+colnames(predicted.proteins) <- colnames(data)
+
+my.write.table <- function(x, filename) {
+    cat("saving", basename(filename), "...\n")
+    write.table(x, file=filename, row.names=F, col.names=T, sep="\t")
+}
+
+my.write.table(predicted.proteins, file.path(methylation.dir,paste0(predicted.proteins,".txt")))
+
+
+
+
+
 

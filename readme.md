@@ -93,5 +93,16 @@ the different types. Creates three annotation files:
 bash annotate-data.sh
 ```
 
+Estimate 109 predicted protein levels using DNA methylation data
+using the prediction models developed by Gadd et al. 2022 and 
+implemented in meffonym R package (https://github.com/perishky/meffonym):
 
+> Gadd et al., ‘Epigenetic Scores for the Circulating Proteome as Tools for 
+> Disease Prediction’. Elife. 2022. doi: 10.7554/ELIFE.71802
 
+Adds the following file of predicted protein values:
+- `METHYLATION_DIR/predicted.proteins.txt` 
+
+```
+bash predict-proteins.sh
+```
