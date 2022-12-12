@@ -1,8 +1,10 @@
 ## package names
-cran <- c("data.table", "readxl", "knitr")
-bioc <- "IlluminaHumanMethylation450kanno.ilmn12.hg19"
+cran <- c("data.table", "readxl", "knitr", "RPMM", "devtools")
+bioc <- c("IlluminaHumanMethylation450kanno.ilmn12.hg19", "impute")
+github <- c("perishky/meffil")
 
-installed <- sapply(c(cran,bioc), require, character.only=T)
+packages <- c(cran,bioc, github)
+installed <- sapply(basename(packages), require, character.only=T)
 installed
 
 if (sum(installed) < length(installed)){
@@ -27,9 +29,19 @@ if (sum(installed) < length(installed)){
             BiocManager::install(names(installed[index]))
         }
 
+    index <- intersect(
+                which(names(installed) %in% basename(github)), 
+                which(installed == FALSE))
+
+        if(length(index) > 0){
+            cat("Installing", basename(packages[index]), "from", packages[index],
+                "repo on github", "\n")            
+            devtools::install_github(packages[index])
+        }
+
 }
 
-installed <- sapply(c(cran,bioc), require, character.only=T)
+installed <- sapply(basename(packages), require, character.only=T)
 cat("Of the below packages required: \n",
     names(installed),
     "\n \n the following are available: \n", 
