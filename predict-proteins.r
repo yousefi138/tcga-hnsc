@@ -1,4 +1,5 @@
 #args <- c("hnsc-project/data/methylation-dataset")
+args = commandArgs(trailingOnly=TRUE)
 
 methylation.dir <- args[1]
 methylation.file <- file.path(methylation.dir, "methylation.txt")
