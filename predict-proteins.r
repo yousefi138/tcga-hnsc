@@ -28,11 +28,11 @@ data <- my.read.table(methylation.file)
     data <- data[index.na.row, ]
 
 ## check number of rows missing per sample
-miss <- apply(data, 2, function(i) table(is.na(i)), simplify=F)
-miss.df <- as.data.frame(do.call(rbind, miss))
-summary(miss.df$"TRUE")
+#miss <- apply(data, 2, function(i) table(is.na(i)), simplify=F)
+#miss.df <- as.data.frame(do.call(rbind, miss))
+#summary(miss.df$"TRUE")
 
-## not sure why these observations are missing ~90k observations
+## Before the all na row drop above ~90k observations
 #   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
 #  89519   89566   89645   89790   89817   95558
 
@@ -62,7 +62,7 @@ my.write.table <- function(x, filename) {
     write.table(x, file=filename, row.names=F, col.names=T, sep="\t")
 }
 
-my.write.table(predicted.proteins, file.path(methylation.dir,paste0(predicted.proteins,".txt")))
+my.write.table(predicted.proteins, file.path(methylation.dir, "predicted-proteins.txt"))
 
 
 
