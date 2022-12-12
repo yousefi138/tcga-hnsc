@@ -1,7 +1,7 @@
 ## package names
-cran <- c("data.table", "readxl", "knitr", "RPMM", "devtools")
+cran <- c("data.table", "readxl", "knitr", "RPMM", "devtools", "tidyverse")
 bioc <- c("IlluminaHumanMethylation450kanno.ilmn12.hg19", "impute")
-github <- c("perishky/meffil")
+github <- c("perishky/meffonym")
 
 packages <- c(cran,bioc, github)
 installed <- sapply(basename(packages), require, character.only=T)
