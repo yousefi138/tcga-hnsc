@@ -101,7 +101,7 @@ implemented in meffonym R package (https://github.com/perishky/meffonym):
 > Disease Prediction’. Elife. 2022. doi: 10.7554/ELIFE.71802
 
 Adds the following file of predicted protein values:
-- `METHYLATION_DIR/predicted.proteins.txt` 
+- `METHYLATION_DIR/predicted-proteins.txt` 
 
 ```
 bash predict-proteins.sh
