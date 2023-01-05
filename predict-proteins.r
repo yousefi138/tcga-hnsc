@@ -59,12 +59,11 @@ colnames(predicted.proteins) <- colnames(data)
 
 my.write.table <- function(x, filename) {
     cat("saving", basename(filename), "...\n")
-    write.table(x, file=filename, row.names=F, col.names=T, sep="\t")
+    write.table(x, file=filename, row.names=T, col.names=T, sep="\t")
 }
 
 my.write.table(predicted.proteins, file.path(methylation.dir, "predicted-proteins.txt"))
-
-
+write_rds(predicted.proteins, file.path(methylation.dir, "predicted-proteins.rds"))
 
 
 
