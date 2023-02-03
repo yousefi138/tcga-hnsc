@@ -14,7 +14,8 @@ if (sum(installed) < length(installed)){
                 which(installed == FALSE))
 
         if(length(index) > 0){
-            cat("Installing", names(installed[index]), "from CRAN", "\n")            
+            cat("Installing", names(installed[index]), "from CRAN", "\n")
+            options(repos = "https://cloud.r-project.org")            
             install.packages(names(installed[index]))
         }
 
