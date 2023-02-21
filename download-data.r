@@ -9,6 +9,8 @@ dir.create(output.dir, recursive=T)
 
 url <- "https://gdac.broadinstitute.org/runs/stddata__2016_01_28/data/HNSC/20160128"
 files <- read.csv(filename, header=T, stringsAsFactors=F)
+options(timeout = max(300, getOption("timeout")))
+getOption("timeout")
 
 for (filename in files$filename) {
     if (!file.exists(file.path(output.dir, filename)))
